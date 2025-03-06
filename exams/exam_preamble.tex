@@ -1,0 +1,265 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+%————— Document margins ——————%
+\usepackage[margin=2 cm]{geometry}
+
+%————— Math packages —————%
+\usepackage{amscd,amssymb,amsmath}
+
+%————— Macro programming ——————%
+\usepackage{multido} % Incorporates one macro "multido" which is a better for-loop feature for TiKz diagrams and tables
+
+%————— Enumerate —————%
+\usepackage{enumerate}
+\usepackage[inline]{enumitem}   % Allows items to be on the same line in the environments enumerate and itemize. Note that when it comes to labels, you'll now need to label as "label=(\alph*)" or something like that.
+\makeatletter
+% This command ignores the optional argument for itemize and enumerate lists
+\newcommand{\inlineitem}[1][]{%
+	\ifnum\enit@type=\tw@
+	{\descriptionlabel{#1}}
+	\hspace{\labelsep}%
+	\else
+	\ifnum\enit@type=\z@
+	\refstepcounter{\@listctr}\fi
+	\quad\@itemlabel\hspace{\labelsep}%
+	\fi}
+\makeatother
+
+%————— Tables ——————%
+\usepackage{arydshln} % Allows for dashed line styles for tables / arrays %
+% Dashline lengths (via the arydshln package) %
+\setlength\dashlinedash{1pt}
+\setlength\dashlinegap{1.5pt}
+\setlength\arrayrulewidth{0.3pt}
+
+%————— Frame boxes —————%
+\usepackage[skins]{tcolorbox} % Fancier framed box package with the "skins" library
+
+%————— Tiks Pictures —————% 
+% For examples, search online or refer to your older homeworks from your previous classes %
+
+\usepackage{etex} %fixes the fight that pictex has with every other drawing package
+\usepackage{pictexwd}
+\usepackage{tikz, tikz-cd}
+\tikzstyle{V}=[draw, fill =black, circle, inner sep=0pt, minimum size=4pt]
+\tikzstyle over=[draw=white,double=black,line width=3pt]
+\tikzcdset{scale cd/.style={every label/.append style={scale=#1},
+		cells={nodes={scale=#1}}}}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+%————— Tikz-cd Options —————%
+% [Using symbols as arrows] %
+\tikzset{
+	symbol/.style={
+		draw=none,
+		every to/.append style={
+			edge node={node [sloped, allow upside down, auto=false]{$#1$}}}
+	}
+}
+
+%————— Fonts (Universal - applies to the whole document) —————%
+%\usepackage{mathptmx} % Times New Roman %
+
+%————— Scripts (Partial - only applies when used in commands) —————%
+\usepackage{mathrsfs, lmodern, calligra}
+\newcommand\scr[1]{\mathscr{#1}} % Ralph Smith’s Formal Script %
+\newcommand\lmss[1]{{\fontfamily{lmss}\selectfont #1}} % Latin Modern Sans Serif Script%
+
+%————— Spacing —————%
+\usepackage{setspace} % Allow doublespacing and onehalfspacing %
+\usepackage{quoting}
+\quotingsetup{vskip=0pt} % Fix the spacing for quotes %
+
+%————— Canceling / Strikethrough ————%
+\usepackage{cancel}
+\usepackage[normalem]{ulem}
+
+%——— Change display color of pdf ———%
+% (Note: This code should be only copied and pasted before the document environment, since its use depends from tex file to tex file)
+%\pagecolor[rgb]{0.15,0.15,0.15}
+%\color[rgb]{1,1,1}
+
+%——— Page numbering ——— %
+% (Note: This code should be only copied and pasted before the document environment, since its use depends from tex file to tex file)
+%\pagenumbering{gobble}
+
+%——— Fancy headers ————%
+%\usepackage{fancyhdr}
+
+%——— Footnotes ———%
+\makeatletter
+\def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
+\makeatother
+
+%———— References / Citation / Bibliography ————%
+%\usepackage{natbib}
+\usepackage[pdftex,bookmarks]{hyperref} % According to the documentation, the hyperref package should be last, because its job is to redefine many LaTeX commands.
+
+%———— Commenting—————%
+\usepackage{verbatim} % Great for multiline commenting
+
+%———— Statements, Problems, and Solutions Environments ————%
+\usepackage{amsthm} %(Only uncomment if you're not using the package amsart, since it contains it)
+\renewcommand{\qed}{\hfill$\blacksquare$}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem{crll}{Corollary}
+\newtheorem{lmm}{Lemma}
+\newtheorem{claim}{Claim}
+\newtheorem{exce}{Exercise}
+\newtheorem{ques}{Question}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{conj}{Conjecture}
+\newtheorem{eg}{Example}
+\newtheorem{ceg}{Counterexample}
+\newtheorem{phil}{Philosophy}
+\newtheorem{idea}{Idea}
+\newtheorem{observe}{Observation}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newtheorem{note}{Note}
+\newtheorem{sol}{Solution}
+
+\newcommand\prob[1]{\noindent \underline{\textbf{Problem {#1}.}}\quad}
+\newcommand\ans{\noindent \underline{\textbf{Answer:}}\quad}
+
+%———— Alphabets ————% 
+\def\cA{\mathcal{A}} \def\cB{\mathcal{B}} \def\cC{\mathcal{C}} \def\cD{\mathcal{D}}
+\def\cE{\mathcal{E}} \def\cF{\mathcal{F}} \def\cG{\mathcal{G}} \def\cH{\mathcal{H}}
+\def\cI{\mathcal{I}} \def\cJ{\mathcal{J}} \def\cK{\mathcal{K}} \def\cL{\mathcal{L}}
+\def\cM{\mathcal{M}} \def\cN{\mathcal{N}} \def\cO{\mathcal{O}} \def\cP{\mathcal{P}}
+\def\cQ{\mathcal{Q}} \def\cR{\mathcal{R}} \def\cS{\mathcal{S}} \def\cT{\mathcal{T}}
+\def\cU{\mathcal{U}} \def\cV{\mathcal{V}} \def\cW{\mathcal{W}} \def\cX{\mathcal{X}}
+\def\cY{\mathcal{Y}} \def\cZ{\mathcal{Z}}
+
+\def\A{\mathbb{A}} \def\B{\mathbb{B}} \def\C{\mathbb{C}} \def\D{\mathbb{D}} \def\E{\mathbb{E}} \def\F{\mathbb{F}} \def\G{\mathbb{G}} \def\H{\mathbb{H}} \def\I{\mathbb{I}} \def\J{\mathbb{J}} \def\K{\mathbb{K}} \def\L{\mathbb{L}} \def\M{\mathbb{M}} \def\N{\mathbb{N}} \def\O{\mathbb{O}} \def\P{\mathbb{P}} \def\Q{\mathbb{Q}} \def\R{\mathbb{R}} \def\S{\mathbb{S}} \def\T{\mathbb{T}} \def\U{\mathbb{U}} \def\V{\mathbb{V}} \def\W{\mathbb{W}} \def\X{\mathbb{X}} \def\Y{\mathbb{Y}} \def\Z{\mathbb{Z}}  
+
+\def\fa{\mathfrak{a}} \def\fb{\mathfrak{b}} \def\fc{\mathfrak{c}} \def\fd{\mathfrak{d}} \def\fe{\mathfrak{e}} \def\ff{\mathfrak{f}} \def\fg{\mathfrak{g}} \def\fh{\mathfrak{h}} \def\fj{\mathfrak{j}} \def\fk{\mathfrak{k}} \def\fl{\mathfrak{l}} \def\fm{\mathfrak{m}} \def\fn{\mathfrak{n}} \def\fo{\mathfrak{o}} \def\fp{\mathfrak{p}} \def\fq{\mathfrak{q}} \def\fr{\mathfrak{r}} \def\fs{\mathfrak{s}} \def\ft{\mathfrak{t}} \def\fu{\mathfrak{u}} \def\fv{\mathfrak{v}} \def\fw{\mathfrak{w}} \def\fx{\mathfrak{x}} \def\fy{\mathfrak{y}} \def\fz{\mathfrak{z}}
+
+\def\fA{\mathfrak{A}} \def\fB{\mathfrak{B}} \def\fC{\mathfrak{C}} \def\fD{\mathfrak{D}} \def\fE{\mathfrak{E}} \def\fF{\mathfrak{F}} \def\fG{\mathfrak{G}} \def\fH{\mathfrak{H}} \def\fJ{\mathfrak{J}} \def\fK{\mathfrak{K}} \def\fL{\mathfrak{L}} \def\fM{\mathfrak{M}} \def\fN{\mathfrak{N}} \def\fO{\mathfrak{O}} \def\fP{\mathfrak{P}} \def\fQ{\mathfrak{Q}} \def\fR{\mathfrak{R}} \def\fS{\mathfrak{S}} \def\fT{\mathfrak{T}} \def\fU{\mathfrak{U}} \def\fV{\mathfrak{V}} \def\fW{\mathfrak{W}} \def\fX{\mathfrak{X}} \def\fY{\mathfrak{Y}} \def\fZ{\mathfrak{Z}}
+
+%%———— Essential commands / Shortcuts ————%%
+\newcommand{\dmo}{\DeclareMathOperator}
+
+%———— Other shortcuts ————%
+\def\hyphen{\text{-}}
+\def\rddots{\mathbin{\text{\rotatebox[origin=c]{90}{$\ddots$}}}} % Rotated diagonal dots %
+
+%———— Shortcuts for algebraic operations ————%
+\newcommand{\f}[2]{\frac{#1}{#2}} % Fraction %
+\newcommand{\flr}[1]{\left\lfloor{#1}\right\rfloor} % Floor %
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil} % Ceiling %
+\renewcommand\mod[1]{\hspace{4 pt} (\text{mod}\hspace{3 pt}{#1})} % Mod n %
+\renewcommand\bar[1]{\overline{#1}} % Equivalence class %
+\newcommand{\lgdre}[2]{\begin{pmatrix}\raisebox{.5 ex}{\ensuremath{#1}}\big/\raisebox{-.5 ex}{\ensuremath{#2}}\end{pmatrix}} % Legendre symbol %
+\newcommand{\norm}[1]{\left|\left|{#1}\right|\right|} % Norm %
+\let\Im\relax \dmo\Im{Im} % Imaginary part %
+\let\Re\relax \dmo\Re{Re} % Real part %
+\def\ord{\text{ord}} % Order of a group element %
+\def\lcm{\text{lcm}} % Least common multiple %
+\dmo\sinc{\text{sinc}} % Sinc %
+\newcommand{\derv}[2]{\f{d{#1}}{d{#2}}} % Derivative %
+\newcommand{\pderv}[2]{\f{\partial{#1}}{\partial{#2}}} % Partial derivative %
+\let\div\relax \dmo\div{div} % div %
+
+%———— Shortcuts for sets ————%
+\newcommand{\clo}[1]{\overline{#1}} % Closure of a set %
+\newcommand{\tl}[1]{\widetilde{#1}} % Tilde %
+\def\<{\langle} \def\>{\rangle} % Sequence; Generators for group, ideal, module, etc. %
+\def\bdry{\partial} % Boundary of a set %
+\def\se{\subseteq} % Subset %
+\def\Se{\supseteq} % Superset %
+\def\symd{\triangle} % Symmetric Difference %
+\def\sd{\setminus} % Set Difference %
+\def\sP{\scr{P}} % Power set %
+\dmo\Supp{Supp} % Support %
+
+%———— Shortcuts for maps ————%
+\newcommand{\xra}{\xrightarrow} % In-line use of right arrow with a label %
+\newcommand{\xla}{\xleftarrow} % In-line use of left arrow with a label %
+
+\makeatletter
+\newcommand{\xlra}[2][]{\ext@arrow 3359\leftrightarrowfill@{#1}{#2}} % In-line use of left-right arrow with a label %
+\newcommand{\xdra}[2][]{\ext@arrow 0359\rightarrowfill@@{#1}{#2}} % In-line use of dashed right arrow with a label %
+\newcommand{\xdla}[2][]{\ext@arrow 3095\leftarrowfill@@{#1}{#2}} % In-line use of dashed left arrow with a label %
+\newcommand{\xdlra}[2][]{\ext@arrow 3359\leftrightarrowfill@@{#1}{#2}} % In-line use of dashed left-right arrow with a label %
+
+\def\rightarrowfill@@{\arrowfill@@\relax\relbar\rightarrow}
+\def\leftarrowfill@@{\arrowfill@@\leftarrow\relbar\relax}
+\def\leftrightarrowfill@@{\arrowfill@@\leftarrow\relbar\rightarrow}
+\def\arrowfill@@#1#2#3#4{%
+	$\m@th\thickmuskip0mu\medmuskip\thickmuskip\thinmuskip\thickmuskip
+	\relax#4#1
+	\xleaders\hbox{$#4#2$}\hfill
+	#3$%
+}
+\makeatother
+
+\newcommand{\hra}{\hookrightarrow} % In-line use of hooked right arrow %
+\newcommand{\hla}{\hookleftarrow} % In-line use of hooked left arrow %
+\renewcommand\hat[1]{\widehat{#1}} % Inverse Fourier transform %
+\def\id{\text{id}} % Identity map %
+\dmo\dom{domain} % Domain of a function %
+\dmo\codom{codomain} % Codomain of a function %
+\dmo\im{im} % Image of a function %
+\dmo\ran{range} % Range of a function %
+\dmo\dist{distance} % Distance function %
+
+%———— Shortcuts for linear algebraic operators / functions ————%
+\dmo\rank{rank} % Rank %
+\dmo\Span{span} % Span %
+
+
+%———— Correction purposes ————%
+%\newcommand{\comment}[1]{\textcolor{blue}{#1}} (Don't use this if the package verbatim is in use)
+\newcommand{\authorcomment}[1]{\textcolor{blue}{#1}} 
+
+%———— Modified title page ————%
+\makeatletter
+\def\@maketitle{%
+	\newpage
+	\null
+	\vspace*{-5em}
+	\input{testing_center_attributes.tex}%
+	\vskip 2em
+	\begin{center}%
+		\let \footnote \thanks
+		{\LARGE \@title \par}%
+		\vskip 1.5em%
+		{\large
+			\lineskip .5em%
+			\begin{tabular}[t]{c}%
+				\@author
+			\end{tabular}\par}%
+		\vskip 1em%
+		{\large \@date}%
+	\end{center}%
+	\par
+	\vskip 1.5em}
+\makeatother
+
+\title{Washtenaw Community College --- MTH 176 College Algebra}
+\author{Midterm Exam \examnumber}
+\date{\examdate, \examyear}
+
+%———— Exam data management ————%
+\newread\examattributes
+\def\xpar{\par}
+\def\examattributesdef#1,#2#3 \relax{\expandafter\def\csname#1\endcsname{#2#3}}
+\openin\examattributes=ea.csv
+\loop
+\ifeof\examattributes
+\else
+\read\examattributes to \tmp
+\ifx\tmp\xpar\else
+\expandafter\examattributesdef\tmp\relax
+\fi
+\repeat

@@ -1,0 +1,19 @@
+\vspace*{10em}
+\makeatletter
+\newcommand{\gradetable}{}% 
+\multido{\i = 1+1}{\examproblemcount}{%
+	\protected@xdef\gradetable{\gradetable Problem \i & \hfill / \examproblemweight\ points \protect \\ \protecting{\hline}}%
+}
+\makeatother
+\begin{center}
+\tcbox[enhanced,attach boxed title to top center=
+{yshift=-2mm,yshifttext=-1mm},colback=white,colframe=black,colbacktitle=black,title={\textbf{Grading}}]{
+	\Large{
+	\begin{tabular}{r| p{10em}}
+		\gradetable
+		\hline
+		Total & \hfill / \examtotal\ points
+	\end{tabular}
+	}
+}
+\end{center}
