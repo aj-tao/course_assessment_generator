@@ -222,53 +222,25 @@
 %\newcommand{\comment}[1]{\textcolor{blue}{#1}} (Don't use this if the package verbatim is in use)
 \newcommand{\authorcomment}[1]{\textcolor{blue}{#1}} 
 
-%———— Page numbering —————%
-\usepackage{fancyhdr}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\makeatletter
-\let\ps@plain\ps@fancy
-\makeatother
-\lfoot{\thepage}
-
-%———— Modified title page ————%
-\makeatletter
-\def\@maketitle{%
-	\newpage
-	\null
-	\vspace*{-5em}
-	\begin{minipage}{.6\linewidth}
-		\begin{flushleft}
-			\let \footnote \thanks
-			{ \Large \@title \par}%
-			{\lineskip .5em%
-				\noindent \@author --- \@date \par}%
-			\lineskip .5em
-			\input{name_wcc_id.tex}
-		\end{flushleft}
-	\end{minipage}
-	\begin{minipage}{.4\linewidth}
-		\begin{flushright}
-			\input{testing_center_attributes.tex}%
-		\end{flushright}
-	\end{minipage}
-	\vskip 1em}
-\makeatother
-
-\title{Washtenaw Community College}
-\author{MTH 176 College Algebra --- Quiz \quiznumber}
-\date{\quizdate, \quizyear}
-
-%———— Quiz data management ————%
-\newread\examattributes
-\def\xpar{\par}
-\def\examattributesdef#1,#2#3 \relax{\expandafter\def\csname#1\endcsname{#2#3}}
-\openin\examattributes=qa.csv
-\loop
-\ifeof\examattributes
-\else
-\read\examattributes to \tmp
-\ifx\tmp\xpar\else
-\expandafter\examattributesdef\tmp\relax
-\fi
-\repeat
+%———— CSV file parsing —————%
+\usepackage{datatool}
+\DTLloaddb
+	{ca}% <db name>
+	{ca.csv}% <filename>
+\DTLloaddb
+	{pv}% <db name>
+	{pv.csv}% <filename>
+\newcommand{\printval}[1]{%
+	\DTLfetch
+	{ca}% <db name>
+	{variable}% <column 1 name>
+	{#1}% <column 1 value>
+	{value}% <column 2 name>
+}
+\newcommand{\pointval}[1]{%
+	\DTLfetch
+	{pv}% <db name>
+	{variable}% <column 1 name>
+	{#1}% <column 1 value>
+	{value}% <column 2 name>
+}

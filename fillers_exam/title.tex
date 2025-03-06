@@ -1,0 +1,27 @@
+%———— Modified title page ————%
+\makeatletter
+\def\@maketitle{%
+	\newpage
+	\null
+	\vspace*{-5em}
+	\input{fillers_exam/testing_center_attributes.tex}%
+	\vskip 2em
+	\begin{center}%
+		\let \footnote \thanks
+		{\LARGE \@title \par}%
+		\vskip 1.5em%
+		{\large
+			\lineskip .5em%
+			\begin{tabular}[t]{c}%
+				\@author
+			\end{tabular}\par}%
+		\vskip 1em%
+		{\large \@date}%
+	\end{center}%
+	\par
+	\vskip 1.5em}
+\makeatother
+
+\title{Washtenaw Community College --- MTH 176 College Algebra}
+\author{Midterm Exam \printval{number}}
+\date{\printval{date}, \printval{year}}

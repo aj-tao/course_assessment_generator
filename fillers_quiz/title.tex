@@ -1,0 +1,27 @@
+%———— Modified title page ————%
+\makeatletter
+\def\@maketitle{%
+	\newpage
+	\null
+	\vspace*{-5em}
+	\begin{minipage}{.6\linewidth}
+		\begin{flushleft}
+			\let \footnote \thanks
+			{ \Large \@title \par}%
+			{\lineskip .5em%
+				\noindent \@author --- \@date \par}%
+			\lineskip .5em
+			\input{fillers_quiz/name_wcc_id.tex}
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}{.4\linewidth}
+		\begin{flushright}
+			\input{fillers_quiz/testing_center_attributes.tex}%
+		\end{flushright}
+	\end{minipage}
+	\vskip 1em}
+\makeatother
+
+\title{Washtenaw Community College}
+\author{MTH 176 College Algebra --- Quiz \printval{number}}
+\date{\printval{date}, \printval{year}}
