@@ -1,0 +1,29 @@
+%———— Modified title page ————%
+\makeatletter
+\def\@maketitle{%
+	\newpage
+	\null
+	\vspace*{-2.5em}
+	\hspace*{-1.5 em}
+	\begin{minipage}{0.65\linewidth}
+		\begin{flushleft}
+			\let \footnote \thanks
+			{\noindent \large \@title \par}%
+			\lineskip 1em
+			{\noindent \@date \par}%
+			\lineskip .5em
+			\begin{tcolorbox}[colback=white,colframe=black,boxsep=0.5px,arc=0px,text width=25em,segmentation style={solid}]
+				\hspace{-1em} Name:
+			\end{tcolorbox}
+		\end{flushleft}
+	\end{minipage}	
+	\begin{minipage}{.35\linewidth}
+		\input{grading.tex}
+	\end{minipage}
+	\input{fillers_wa/instructions.tex}
+}
+\makeatother
+
+
+\title{Washtenaw Community College - \printval{classcode} \printval{class}}
+\date{Written assignment \printval{number}:  \printval{topics}\\ Due: \printval{duedate}, \printval{dueyear} at \printval{duetime}}

@@ -1,15 +1,16 @@
 variable,value
 type,exam
 instructor,AJ Tao
-semester,Winter 2025
+semester,Fall 2025
+class,College Algebra
 classcode,MTH 176
-sectiondesignation,07
-number,2
-date,March 19 -- 22
+sectiondesignation,06
+number,3
+date,November 17--20
 year,2025
-graphingcalculator,not required
-documenttotal,12
-time,90
-problemcount,7
-documentcopy,12
-totalweight,50
+graphingcalculator,required
+documenttotal,1
+time,120
+problemcount,6
+documentcopy,~
+totalweight,60

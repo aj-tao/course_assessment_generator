@@ -49,6 +49,7 @@
 \usepackage{graphicx}
 \usepackage{epstopdf}
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usetikzlibrary{3d}
 
 %————— Tikz-cd Options —————%
 % [Using symbols as arrows] %
@@ -211,7 +212,7 @@
 \dmo\codom{codomain} % Codomain of a function %
 \dmo\im{im} % Image of a function %
 \dmo\ran{range} % Range of a function %
-\dmo\dist{distance} % Distance function %
+\dmo\dist{dist} % Distance function %
 
 %———— Shortcuts for linear algebraic operators / functions ————%
 \dmo\rank{rank} % Rank %

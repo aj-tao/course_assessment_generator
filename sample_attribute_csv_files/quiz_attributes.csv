@@ -1,14 +1,14 @@
 variable,value
-type,exam
+type,quiz
 instructor,AJ Tao
 semester,Fall 2025
 class,College Algebra
 classcode,MTH 176
 sectiondesignation,06
-number,3
-date,November 17--20
+number,9
+date,November 13
 year,2025
 graphingcalculator,required
-documenttotal,1
-time,120
-problemcount,6
+documenttotal,25
+time,10
+problemcount,2
