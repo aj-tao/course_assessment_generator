@@ -14,7 +14,7 @@ Note: You may need to reinstall the virtual environment using Python 3.13 and th
 	pip3 install -r requirements.txt
 	source env/bin/deactivate
 	
-Keep in mind that I have a modified version of env/lib/python3.13/site-packages/latexcompiler/utils/compile_text_files.py, which doesn't throw out essential files like .tex and .git in the repository when I compile the assessment.tex file. You should probably replace that file in your environment with this one.
+Keep in mind that I have a modified version of ```env/lib/python3.13/site-packages/latexcompiler/utils/compile_text_files.py```, which doesn't throw out essential files like .tex and .git in the repository when I compile the assessment.tex file. You should probably replace that file in your environment with this one.
 
 2. Modify the assessment/attributes.csv file. (There are templates for this located in the sample_attribute_csv_files directory; feel free to use any of these for the attributes file.)
 
