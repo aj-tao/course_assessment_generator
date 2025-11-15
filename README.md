@@ -4,9 +4,7 @@ This is an assessment generator used to generate pdfs of exams, quizzes, and wri
 
 ### How to use
 
-1. Activate the virtual environment to run the python files using
-
-	source env/bin/activate
+1. Activate the virtual environment to run the python files using ```source env/bin/activate```.
 	
 Note: You may need to reinstall the virtual environment using Python 3.13 and the requirements.txt file stored in this repo's env directory. To do this, with terminal in this directory, run
 
@@ -20,11 +18,7 @@ Keep in mind that I have a modified version of env/lib/python3.13/site-packages/
 
 2. Modify the assessment/attributes.csv file. (There are templates for this located in the sample_attribute_csv_files directory; feel free to use any of these for the attributes file.)
 
-3. Run
-
-	python3 [assessment .py file] -g
-	
-where the brackets is replaced with any of "exam.py," "quiz.py," or "wa.py." (Make sure the one you use is compatible with the attributes csv file!)
+3. Run ```python3 [assessment .py file] -g``` where the brackets is replaced with any of "exam.py," "quiz.py," or "wa.py." (Make sure the one you use is compatible with the attributes csv file!)
 
 4. Run the same command as above but with the following flags:
 	- **-p**: This sets the point values of each problem.
